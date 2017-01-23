@@ -5,10 +5,9 @@ import org.apache.commons.lang3.StringUtils;
 
 public class DiamondExercises {
     public static void main(String[] args) {
-//        drawAnIsoscelesTriangle(17);
+        drawAnIsoscelesTriangle(17);
         drawADiamond(11);
-//        drawUpsideDownIsoscelesTriangle(7);
-//        drawADiamondWithYourName(3);
+        drawADiamondWithYourName(11, "Charlie");
     }
 
 //    Isosceles Triangle
@@ -32,8 +31,8 @@ public class DiamondExercises {
 //            *****
 //             ***
 //              *
-    private static void drawUpsideDownIsoscelesTriangle(int n ) {
-        int numberOfSpaces = 1;
+    private static void drawUpsideDownIsoscelesTriangle(int n, int indentation) {
+        int numberOfSpaces = indentation;
         for(int i=n; i>=0; i--) {
             String stars  = StringUtils.repeat("*", ((i*2)-1));
             String spaces = StringUtils.repeat(" ", numberOfSpaces++);
@@ -43,7 +42,7 @@ public class DiamondExercises {
 
     private static void drawADiamond(int n) {
         drawAnIsoscelesTriangle(n);
-        drawUpsideDownIsoscelesTriangle(n-1);
+        drawUpsideDownIsoscelesTriangle(n-1, 1);
     }
 
 //    Diamond with Name
@@ -54,7 +53,9 @@ public class DiamondExercises {
 //           Bill
 //            ***
 //             *
-    private static void drawADiamondWithYourName(int n) {
-
+    private static void drawADiamondWithYourName(int n, String name) {
+        drawAnIsoscelesTriangle(n-1);
+        System.out.println(name);
+        drawUpsideDownIsoscelesTriangle(n-1, 0);
     }
 }
