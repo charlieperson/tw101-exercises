@@ -7,6 +7,7 @@ public class DiamondExercises {
     public static void main(String[] args) {
 //        drawAnIsoscelesTriangle(17);
         drawADiamond(11);
+//        drawUpsideDownIsoscelesTriangle(7);
 //        drawADiamondWithYourName(3);
     }
 
@@ -16,7 +17,7 @@ public class DiamondExercises {
 //             ***
 //            *****
     private static void drawAnIsoscelesTriangle(int n) {
-        int numberOfSpaces = n;
+        int numberOfSpaces = n-1;
         for(int i=1; i<=n; i++) {
             String stars  = StringUtils.repeat("*", ((i*2)-1));
             String spaces = StringUtils.repeat(" ", numberOfSpaces--);
@@ -31,14 +32,18 @@ public class DiamondExercises {
 //            *****
 //             ***
 //              *
-    private static void drawADiamond(int n) {
-        drawAnIsoscelesTriangle(n);
-        int numberOfSpaces = 2;
-        for(int i=(n-1); i>0; i--) {
+    private static void drawUpsideDownIsoscelesTriangle(int n ) {
+        int numberOfSpaces = 1;
+        for(int i=n; i>=0; i--) {
             String stars  = StringUtils.repeat("*", ((i*2)-1));
             String spaces = StringUtils.repeat(" ", numberOfSpaces++);
             System.out.println(spaces + stars);
         }
+    }
+
+    private static void drawADiamond(int n) {
+        drawAnIsoscelesTriangle(n);
+        drawUpsideDownIsoscelesTriangle(n-1);
     }
 
 //    Diamond with Name
