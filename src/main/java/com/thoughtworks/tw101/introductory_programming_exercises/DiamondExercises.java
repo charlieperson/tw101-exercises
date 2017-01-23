@@ -1,8 +1,11 @@
 package com.thoughtworks.tw101.introductory_programming_exercises;
 
+
+import org.apache.commons.lang3.StringUtils;
+
 public class DiamondExercises {
     public static void main(String[] args) {
-        drawAnIsoscelesTriangle(3);
+        drawAnIsoscelesTriangle(17);
         drawADiamond(8);
         drawADiamondWithYourName(3);
     }
@@ -13,7 +16,12 @@ public class DiamondExercises {
 //             ***
 //            *****
     private static void drawAnIsoscelesTriangle(int n) {
-
+        int numberOfSpaces = n;
+        for(int i=1; i<=n; i++) {
+            String stars  = StringUtils.repeat("*", ((i*2)-1));
+            String spaces = StringUtils.repeat(" ", numberOfSpaces--);
+            System.out.println(spaces + stars);
+        }
     }
 
 //    Diamond
