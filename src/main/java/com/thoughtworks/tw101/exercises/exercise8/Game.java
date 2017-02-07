@@ -3,6 +3,7 @@ package com.thoughtworks.tw101.exercises.exercise8;
 import com.thoughtworks.tw101.exercises.exercise7.SecretNumberGenerator;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Game {
@@ -10,39 +11,62 @@ public class Game {
     private boolean complete = false;
     SecretNumberGenerator secretNumber;
     private ArrayList<Integer> guessRecord = new ArrayList<>();
+    private int currentGuess = -1;
+    private boolean currentGuessIsValid;
+
 
     public Game() {
         secretNumber = new SecretNumberGenerator();
     }
 
-    public void start() {
+    public void start() throws InputMismatchException {
         System.out.println("Take a guess");
-        int guess;
-
         while(!complete) {
-            guess = scanner.nextInt();
-            processGuess(guess);
+            validateGuess();
+            if(currentGuessIsValid) {
+                addGuessToRecord();
+                processGuess();
+            }
         }
-        System.out.println("Got it!!!");
-        printGuessRecord();
+        handleVictory();
     }
 
-    private void processGuess(int guess) {
-        guessRecord.add(guess);
-        if(guess == secretNumber.getNumber()) {
+    private void validateGuess() {
+        try {
+            currentGuess = scanner.nextInt();
+            currentGuessIsValid = true;
+        } catch(Exception ex) {
+            currentGuessIsValid = false;
+            System.out.println("Please be sure to enter a valid integer value");
+        } finally {
+            scanner.nextLine();
+        }
+    }
+
+    private void addGuessToRecord() {
+        guessRecord.add(currentGuess);
+    }
+
+    private void processGuess() {
+        if(currentGuess == secretNumber.getNumber()) {
             complete = true;
         } else {
-            printHint(guess);
+            printHint();
             System.out.println("Try again!");
         }
     }
 
-    private void printHint(int guess) {
-        if(guess > secretNumber.getNumber()) {
+    private void printHint() {
+        if(currentGuess > secretNumber.getNumber()) {
             System.out.println("Too high!");
         } else {
             System.out.println("Too low!");
         }
+    }
+
+    public void handleVictory() {
+        System.out.println("Got it!!!");
+        printGuessRecord();
     }
 
     private void printGuessRecord() {
