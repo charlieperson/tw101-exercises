@@ -47,15 +47,9 @@ public class Node {
 
 
     public List<String> names() {
-        if(left != null) {
-            orderedNames.addAll(left.names());
-            orderedNames.add(getName());
-        } else {
-            orderedNames.add(getName());
-        }
-        if(right != null) {
-            orderedNames.addAll(right.names());
-        }
+        if(left != null) orderedNames.addAll(left.names());
+        orderedNames.add(getName());
+        if(right != null) orderedNames.addAll(right.names());
         return orderedNames;
     }
 
