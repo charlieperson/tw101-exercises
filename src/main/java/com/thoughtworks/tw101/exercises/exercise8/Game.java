@@ -8,24 +8,25 @@ import java.util.Scanner;
 
 public class Game {
     Scanner scanner = new Scanner(System.in);
-    private boolean complete = false;
     SecretNumberGenerator secretNumber;
     private ArrayList<Integer> guessRecord = new ArrayList<>();
     private int currentGuess = -1;
     private boolean currentGuessIsValid;
+    private GuessProcessor guessProcessor;
 
 
     public Game() {
         secretNumber = new SecretNumberGenerator();
+        guessProcessor = new GuessProcessor(secretNumber.getNumber());
     }
 
     public void start() throws InputMismatchException {
         System.out.println("Take a guess");
-        while(!complete) {
+        while(currentGuess != secretNumber.getNumber()) {
             validateGuess();
             if(currentGuessIsValid) {
                 addGuessToRecord();
-                processGuess();
+                guessProcessor.processGuess(currentGuess);
             }
         }
         handleVictory();
@@ -45,23 +46,6 @@ public class Game {
 
     private void addGuessToRecord() {
         guessRecord.add(currentGuess);
-    }
-
-    private void processGuess() {
-        if(currentGuess == secretNumber.getNumber()) {
-            complete = true;
-        } else {
-            printHint();
-            System.out.println("Try again!");
-        }
-    }
-
-    private void printHint() {
-        if(currentGuess > secretNumber.getNumber()) {
-            System.out.println("Too high!");
-        } else {
-            System.out.println("Too low!");
-        }
     }
 
     public void handleVictory() {
