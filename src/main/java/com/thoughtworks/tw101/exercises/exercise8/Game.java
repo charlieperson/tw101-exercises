@@ -29,7 +29,7 @@ public class Game {
                 guessProcessor.processGuess(currentGuess);
             }
         }
-        handleVictory();
+        VictoryHandler.handleVictory(guessRecord);
     }
 
     private void validateGuess() {
@@ -46,18 +46,6 @@ public class Game {
 
     private void addGuessToRecord() {
         guessRecord.add(currentGuess);
-    }
-
-    public void handleVictory() {
-        System.out.println("Got it!!!");
-        printGuessRecord();
-    }
-
-    private void printGuessRecord() {
-        System.out.println("Here are all of your guesses: ");
-        for(Integer guess : guessRecord) {
-            System.out.println(guess);
-        }
     }
 }
 
