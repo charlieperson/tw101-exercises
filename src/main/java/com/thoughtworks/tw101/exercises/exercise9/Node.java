@@ -47,13 +47,15 @@ public class Node {
 
 
     public List<String> names() {
-        if(left != null) orderedNames.addAll(left.names());
+        if(left != null) left.names();
         orderedNames.add(getName());
-        if(right != null) orderedNames.addAll(right.names());
+        if(right != null) right.names();
         return orderedNames;
     }
 
     public String getName() {
         return name;
     }
+
+
 }
