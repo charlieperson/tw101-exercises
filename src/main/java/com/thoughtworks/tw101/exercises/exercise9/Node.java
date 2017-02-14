@@ -7,7 +7,6 @@ public class Node {
     private String name;
     private Node right;
     private Node left;
-    private ArrayList<String> orderedNames = new ArrayList<>();
 
     public Node(String name) {
         this.name = name;
@@ -46,11 +45,11 @@ public class Node {
     }
 
 
-    public List<String> names() {
-        if(left != null) orderedNames.addAll(left.names());
-        orderedNames.add(name);
-        if(right != null) orderedNames.addAll(right.names());
-        return orderedNames;
+    public List<String> names(ArrayList<String> names) {
+        if(left != null) left.names(names);
+        names.add(name);
+        if(right != null) right.names(names);
+        return names;
     }
 
 
