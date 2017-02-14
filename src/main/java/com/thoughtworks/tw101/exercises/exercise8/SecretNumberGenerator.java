@@ -2,10 +2,10 @@ package com.thoughtworks.tw101.exercises.exercise8;
 
 import java.util.Random;
 
-public class RandomNumberGenerator {
+public class SecretNumberGenerator {
     private static int number = generate();
 
-    public static int getNumber() {
+    public int getNumber() {
         return number;
     }
 

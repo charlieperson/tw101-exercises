@@ -1,10 +1,6 @@
 package com.thoughtworks.tw101.exercises.exercise8;
 
-import com.thoughtworks.tw101.exercises.exercise7.SecretNumberGenerator;
-
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class Game {
     private SecretNumberGenerator secretNumber;
