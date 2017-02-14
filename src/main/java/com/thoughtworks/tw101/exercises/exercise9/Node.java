@@ -39,7 +39,7 @@ public class Node {
     }
 
     private boolean newNodeNameComesLater(String newName) {
-        if(name.compareToIgnoreCase(newName) < 0) {
+        if(name.compareTo(newName) < 0) {
             return true;
         }
         return false;
@@ -47,14 +47,10 @@ public class Node {
 
 
     public List<String> names() {
-        if(left != null) left.names();
-        orderedNames.add(getName());
-        if(right != null) right.names();
+        if(left != null) orderedNames.addAll(left.names());
+        orderedNames.add(name);
+        if(right != null) orderedNames.addAll(right.names());
         return orderedNames;
-    }
-
-    public String getName() {
-        return name;
     }
 
 
