@@ -25,7 +25,7 @@ public class Game {
             addGuessToRecord();
             guessProcessor.processGuess(currentGuess);
         }
-        VictoryHandler.handleVictory(guessRecord);
+        VictoryHandler.printGuessRecord(guessRecord);
     }
 
     private void addGuessToRecord() {
