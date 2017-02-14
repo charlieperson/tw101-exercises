@@ -2,10 +2,10 @@ package com.thoughtworks.tw101.exercises.exercise8;
 
 public class GuessProcessor {
 
-    private int secretNumber;
+    public static int secretNumber;
 
-    public GuessProcessor(int secretNumber) {
-        this.secretNumber = secretNumber;
+    public GuessProcessor(int number) {
+        secretNumber = number;
     }
 
     public void processGuess(int guess) {
